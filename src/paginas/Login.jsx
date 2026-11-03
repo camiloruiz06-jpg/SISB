@@ -2,31 +2,39 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Icono from '../componentes/Icono'
 import { useApp } from '../contexto/AppContext'
-import { nombreMedico, buscarEspecialidad } from '../servicios/api'
+import { nombreMedico } from '../servicios/api'
+import { usuarios as USUARIOS_PRUEBA, especialidades as ESPECIALIDADES_PRUEBA } from '../datos/mock'
+import { CLAVE_DEMO_SUPABASE } from '../servicios/mapeo'
 import FormularioPaciente from './FormularioPaciente'
 import { FOTOS } from '../datos/imagenes'
 
-/* Usuarios de prueba que se muestran según el rol elegido. */
+/* Usuarios de prueba que se muestran según el rol elegido. Salen de la lista fija de
+   mock.js porque, con Supabase, antes de iniciar sesión no se puede leer la base. */
 const DEMOS = { paciente: ['u1', 'u2'], medico: ['u3', 'u4', 'u5'], auxiliar: ['u6'], admin: ['u7'] }
 
 const RUTA_INICIAL = { paciente: '/paciente', medico: '/medico', auxiliar: '/auxiliar', admin: '/admin' }
 
 export default function Login() {
-  const { db, entrar, entrarDirecto, setModal } = useApp()
+  const { entrar, entrarDirecto, setModal, usaSupabase } = useApp()
+  const [ocupado, setOcupado] = useState(false)
   const navegar = useNavigate()
   const [rol, setRol] = useState('paciente')
   const [doc, setDoc] = useState('')
   const [clave, setClave] = useState('')
 
-  const enviar = (e) => {
+  const enviar = async (e) => {
     e.preventDefault()
-    const usuario = entrar(doc.trim(), clave, rol)
+    setOcupado(true)
+    const usuario = await entrar(doc.trim(), clave, rol)
+    setOcupado(false)
     if (usuario) navegar(RUTA_INICIAL[usuario.rol])
   }
 
-  const entrarComo = (usuario) => {
-    entrarDirecto(usuario)
-    navegar(RUTA_INICIAL[usuario.rol])
+  const entrarComo = async (usuario) => {
+    setOcupado(true)
+    const ok = await entrarDirecto(usuario)
+    setOcupado(false)
+    if (ok) navegar(RUTA_INICIAL[usuario.rol])
   }
 
   const abrirRegistro = () => setModal({
@@ -85,7 +93,7 @@ export default function Login() {
             <input type="password" value={clave} onChange={(e) => setClave(e.target.value)}
                    autoComplete="current-password" placeholder="••••" required />
           </label>
-          <button className="btn ancho" type="submit">Entrar <Icono nombre="salir" tam={20} /></button>
+          <button className="btn ancho" type="submit" disabled={ocupado}>{ocupado ? 'Entrando…' : 'Entrar'} <Icono nombre="salir" tam={20} /></button>
         </form>
 
         {rol === 'paciente' && (
@@ -97,16 +105,16 @@ export default function Login() {
 
         <div className="demo">
           <b className="pequeno">Usuarios de prueba</b>
-          <span className="ayuda"> — toca uno para entrar directo (la contraseña de todos es 1234).</span>
+          <span className="ayuda"> — toca uno para entrar directo (la contraseña de todos es {usaSupabase ? CLAVE_DEMO_SUPABASE : '1234'}).</span>
           <div className="demo-lista">
             {DEMOS[rol].map((id) => {
-              const p = db.usuarios.find((x) => x.id === id)
+              const p = USUARIOS_PRUEBA.find((x) => x.id === id)
               return (
-                <button key={id} className="demo-item" onClick={() => entrarComo(p)}>
+                <button key={id} className="demo-item" disabled={ocupado} onClick={() => entrarComo(p)}>
                   <span>
                     <b>{p.rol === 'medico' ? nombreMedico(p) : p.nombre}</b><br />
                     <span className="tenue pequeno">
-                      {p.rol === 'medico' ? buscarEspecialidad(db, p.espId).nombre : (p.municipio || p.puesto || p.cargo || '')}
+                      {p.rol === 'medico' ? ESPECIALIDADES_PRUEBA.find((e) => e.id === p.espId).nombre : (p.municipio || p.puesto || p.cargo || '')}
                     </span>
                   </span>
                   <code>{p.doc}</code>

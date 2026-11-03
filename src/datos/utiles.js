@@ -70,6 +70,6 @@ export const minutosAhora = () => { const d = new Date(); return d.getHours() * 
 export const proximosDias = (n = 14) =>
   Array.from({ length: n }, (_, i) => iso(sumaDias(HOY, i)))
 
-/** Genera identificadores únicos mientras no haya base de datos */
-let secuencia = 100
-export const nuevoId = (prefijo) => prefijo + '-' + ++secuencia
+/** Identificador único (también entre computadores distintos, para que sirva igual con Supabase). */
+export const nuevoId = (prefijo) =>
+  prefijo + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8)

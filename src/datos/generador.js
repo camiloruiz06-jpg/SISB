@@ -9,7 +9,7 @@
    todos en el equipo ven los mismos datos al probar.
    Cuando exista Supabase, este archivo deja de usarse.
    =========================================================== */
-import { HOY, iso, sumaDias, aMinutos, deMinutos } from './utiles'
+import { HOY, iso, sumaDias, aMinutos, deMinutos } from './utiles.js'
 
 /* Números pseudoaleatorios reproducibles (algoritmo mulberry32). */
 const crearAzar = (semilla) => () => {

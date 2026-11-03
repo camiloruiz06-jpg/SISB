@@ -34,7 +34,16 @@ function Privada({ roles, children }) {
 }
 
 export default function App() {
-  const { sesion, escala } = useApp()
+  const { sesion, escala, cargando } = useApp()
+
+  // Con Supabase, al abrir la app se revisa si había una sesión guardada.
+  if (cargando) return (
+    <div className="pantalla-carga" role="status">
+      <span className="logo-carga" aria-hidden="true" />
+      <b>SISB</b>
+      <span className="tenue pequeno">Cargando tus datos…</span>
+    </div>
+  )
 
   return (
     <div data-escala={escala} style={{ minHeight: '100%' }}>

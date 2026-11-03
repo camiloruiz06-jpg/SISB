@@ -3,8 +3,8 @@
    Cuando conectemos Supabase, estas listas se reemplazan por
    consultas a las tablas con el mismo nombre.
    =========================================================== */
-import { HOY, iso, sumaDias } from './utiles'
-import { generarDatos } from './generador'
+import { HOY, iso, sumaDias } from './utiles.js'
+import { generarDatos } from './generador.js'
 
 export const especialidades = [
   { id: 'e1', nombre: 'Medicina general', icono: 'pulso',   desc: 'Gripa, fiebre, dolores, control general' },

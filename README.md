@@ -66,10 +66,14 @@ sisb-web/
    ├─ App.jsx                  Rutas de toda la aplicación
    ├─ estilos.css              Paleta, tipografía y componentes visuales
    ├─ datos/
-   │  ├─ mock.js               Datos de prueba (futuras tablas de Supabase)
+   │  ├─ mock.js               Usuarios de prueba fijos
+   │  ├─ generador.js          Genera ~1.200 pacientes y miles de citas realistas
    │  └─ utiles.js             Funciones de fecha y texto
    ├─ servicios/
-   │  └─ api.js                Consultas a los datos (aquí entra Supabase)
+   │  ├─ api.js                Consultas a los datos (con índices para miles de registros)
+   │  ├─ supabase.js           Interruptor modo local / modo Supabase
+   │  ├─ repositorio.js        Lecturas y escrituras a Supabase
+   │  └─ mapeo.js              Nombres de la app ↔ columnas de la base
    ├─ contexto/
    │  └─ AppContext.jsx        Sesión, datos y acciones compartidas
    ├─ componentes/
@@ -118,22 +122,19 @@ El público objetivo son personas con baja alfabetización digital y conexión i
 
 ---
 
-## 6. Lo que falta (siguiente sprint)
+## 6. Base de datos (Supabase) — lista para conectar
 
-Los datos viven en memoria: al recargar la página vuelve al estado inicial.
-Para conectarlo a **Supabase**:
+Sin llaves en el `.env`, la app funciona en **modo local**: datos de prueba en memoria
+(unos 1.200 pacientes y miles de citas generados) que se reinician al recargar.
 
-1. Crear el proyecto en https://supabase.com y copiar la URL y la llave `anon`.
-2. Copiar `.env.example` como `.env` y pegar esos valores.
-3. Instalar el cliente: `npm install @supabase/supabase-js`
-4. Reemplazar el cuerpo de las funciones de `src/servicios/api.js`. Las pantallas
-   no se tocan, porque ya consultan todo a través de ese archivo.
+Todo lo necesario para pasar a **Supabase** ya está hecho: esquema SQL con seguridad por rol,
+script de carga de datos, función para crear cuentas y el interruptor automático en la app.
+Conectarlo toma unos 15 minutos: **sigue la guía [`SUPABASE.md`](SUPABASE.md)**.
 
-Tablas propuestas: `usuarios`, `especialidades`, `citas`, `historia_clinica`,
-`tramites`, `formulas`. Los archivos de exámenes van en Supabase Storage.
+Lo que sigue pendiente:
 
-La videollamada es una maqueta. Se integra con **Jitsi Meet** usando el
-identificador de sala que ya genera `Videollamada.jsx`.
+- La videollamada es una maqueta. Se integra con **Jitsi Meet** usando el identificador de
+  sala que ya genera `Videollamada.jsx`.
 
 ---
 
@@ -142,4 +143,7 @@ identificador de sala que ya genera `Videollamada.jsx`.
 1. Subir el proyecto a GitHub.
 2. Entrar a https://vercel.com, *Add New → Project* e importar el repositorio.
 3. Vercel detecta Vite solo. Dar *Deploy*.
-4. Cuando existan las llaves de Supabase, agregarlas en *Settings → Environment Variables*.
+4. Cuando existan las llaves de Supabase, agregar `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`
+   en *Settings → Environment Variables* y hacer *Redeploy* (detalle en `SUPABASE.md`, paso 8).
+
+Hoy está publicado en **https://sisb-pi.vercel.app** y se actualiza solo con cada `git push` a `main`.

@@ -32,7 +32,7 @@ export default function Usuarios() {
 
   const nuevo = () => setModal({
     titulo: 'Nuevo usuario',
-    contenido: (cerrar) => <FormularioPaciente alTerminar={() => cerrar()} alCancelar={cerrar} />
+    contenido: (cerrar) => <FormularioPaciente conRol alTerminar={() => cerrar()} alCancelar={cerrar} />
   })
 
   const editar = (x) => setModal({

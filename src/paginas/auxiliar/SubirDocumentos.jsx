@@ -23,7 +23,7 @@ export default function SubirDocumentos() {
       tipo: f.get('tipo'),
       titulo: f.get('titulo'),
       detalle: f.get('detalle'),
-      archivo: archivo ? archivo.name : null,
+      archivo,                        // el archivo real: con Supabase se sube a Storage
       autor: 'Auxiliar ' + sesion.nombre
     })
     e.target.reset()
