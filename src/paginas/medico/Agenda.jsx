@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import Icono from '../../componentes/Icono'
 import { useApp } from '../../contexto/AppContext'
 import { FOTOS } from '../../datos/imagenes'
-import { buscarUsuario, buscarEspecialidad, citasDelDia, citasDeMedico } from '../../servicios/api'
-import { HOY, iso, fechaLarga, hora12, sumaDias, desdeIso, DOW, MESES } from '../../datos/utiles'
+import { buscarUsuario, buscarEspecialidad, citasDelDia, citasDeMedico, nombreMedico } from '../../servicios/api'
+import { HOY, iso, fechaLarga, hora12, sumaDias, desdeIso, saludo, DOW, MESES } from '../../datos/utiles'
 
 const ESTADOS = {
   programada: <span className="pill info">Programada</span>,
@@ -28,6 +28,7 @@ export default function Agenda() {
   const activas = delDia.filter((c) => c.estado !== 'cancelada')
   const pendientes = delDia.filter((c) => c.estado === 'programada').length
   const deHoy = citasDelDia(db, sesion.id, iso(HOY)).filter((c) => c.estado !== 'cancelada')
+  const porAtenderHoy = deHoy.filter((c) => c.estado === 'programada').length
   const enSemana = semana.reduce((n, f) => n + citasDelDia(db, sesion.id, f).filter((c) => c.estado !== 'cancelada').length, 0)
   const atendidas = citasDeMedico(db, sesion.id).filter((c) => c.estado === 'atendida').length
 
@@ -38,8 +39,12 @@ export default function Agenda() {
     <div className="vista">
       <div className="banner-foto" style={{ '--foto': `url(${FOTOS.consulta})` }}>
         <span className="tenue">{fechaLarga(iso(HOY))}</span>
-        <h1>Mi agenda</h1>
-        <span className="tenue">{buscarEspecialidad(db, sesion.espId).nombre} · consultas de {sesion.horario.duracion} min</span>
+        <h1>{saludo()}, {nombreMedico(sesion)}</h1>
+        <span className="tenue">
+          {buscarEspecialidad(db, sesion.espId).nombre} · {porAtenderHoy
+            ? 'hoy te ' + (porAtenderHoy === 1 ? 'queda 1 cita' : 'quedan ' + porAtenderHoy + ' citas') + ' por atender'
+            : 'hoy no tienes citas pendientes'}
+        </span>
       </div>
 
       <div className="kpis">

@@ -9,7 +9,7 @@
    todos en el equipo ven los mismos datos al probar.
    Cuando exista Supabase, este archivo deja de usarse.
    =========================================================== */
-import { HOY, iso, sumaDias, aMinutos, deMinutos } from './utiles.js'
+import { HOY, iso, sumaDias, aMinutos, deMinutos, minutosAhora } from './utiles.js'
 
 /* Números pseudoaleatorios reproducibles (algoritmo mulberry32). */
 const crearAzar = (semilla) => () => {
@@ -162,7 +162,9 @@ export function generarDatos(base) {
           ocupado.add(clave)
           const p = pacientes[Math.floor(azar() * pacientes.length)]
           const r = azar()
-          const estado = dia < 0 ? (r < 0.8 ? 'atendida' : r < 0.9 ? 'no-asistio' : 'cancelada')
+          // Lo que ya pasó (días anteriores y las horas de hoy que ya terminaron) quedó atendido o no.
+          const yaPaso = dia < 0 || (dia === 0 && t + dur <= minutosAhora())
+          const estado = yaPaso ? (r < 0.8 ? 'atendida' : r < 0.9 ? 'no-asistio' : 'cancelada')
                        : (r < 0.05 ? 'cancelada' : 'programada')
           const cita = { id: 'gc' + ++n, pacienteId: p.id, medicoId: m.id, espId: m.espId, fecha: f, hora,
             motivo: uno(MOTIVOS[m.espId] || MOTIVOS.e1), estado, modo: 'videollamada' }

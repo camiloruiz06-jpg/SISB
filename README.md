@@ -28,8 +28,8 @@ Para detenerlo: `Ctrl + C` en la terminal.
 
 ## 2. Usuarios de prueba
 
-La contraseña de todos es **1234**. En la pantalla de ingreso puedes tocar
-directamente cualquiera de los usuarios de la lista.
+La contraseña de todos es **1234**. En la pantalla de ingreso, elige el perfil,
+abre **«Entrar con un usuario de prueba»** y toca cualquiera de la lista para entrar directo.
 
 | Rol | Nombre | Documento |
 |---|---|---|
@@ -98,7 +98,7 @@ sisb-web/
 
 | Ref. | Función | Dónde está |
 |---|---|---|
-| R.1 | Registro e inicio de sesión del paciente | `paginas/Login.jsx`, `FormularioPaciente.jsx` |
+| R.1 | Registro, inicio de sesión y recuperación de contraseña | `paginas/Login.jsx`, `FormularioPaciente.jsx` |
 | R.2 | Inicio de sesión de médico, auxiliar y administrador | `paginas/Login.jsx`, `App.jsx` (rutas privadas) |
 | R.3 | Agendamiento de citas por especialidad | `paginas/paciente/Agendar.jsx` |
 | R.4 | Consulta, reprogramación y cancelación de citas | `paginas/paciente/MisCitas.jsx` |

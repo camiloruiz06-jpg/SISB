@@ -45,6 +45,9 @@ export const relativo = (s) => {
   return dif > 1 ? 'En ' + dif + ' días' : 'Hace ' + Math.abs(dif) + ' días'
 }
 
+/** 'Buenos días', 'Buenas tardes' o 'Buenas noches' según la hora. */
+export const saludo = () => { const h = new Date().getHours(); return h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches' }
+
 /** '14:30' -> '2:30 p. m.' (más fácil de leer para el paciente) */
 export const hora12 = (h) => {
   const [H, M] = h.split(':').map(Number)

@@ -181,6 +181,19 @@ export function ProveedorApp({ children }) {
       aviso('Datos actualizados correctamente.')
       return true
     },
+    /* --- recuperar contraseña (R.1-3) ---
+       En modo local se confirma la identidad con el documento y el teléfono registrado.
+       Con Supabase el cambio lo hace el personal del puesto de salud (ver Login.jsx). */
+    restablecerClave(doc, tel, clave) {
+      const numeros = (t) => (t || '').replace(/\D/g, '')
+      const u = db.usuarios.find((x) => x.doc === doc.trim())
+      if (!u || !numeros(tel) || numeros(u.tel) !== numeros(tel)) {
+        aviso('El documento y el teléfono no coinciden con ningún usuario.', 'error'); return false
+      }
+      setDb((d) => ({ ...d, usuarios: d.usuarios.map((x) => (x.id === u.id ? { ...x, clave } : x)) }))
+      aviso('Contraseña cambiada. Ya puedes entrar.')
+      return true
+    },
     eliminarUsuario(id) {
       setDb((d) => ({ ...d, usuarios: d.usuarios.filter((x) => x.id !== id) }))
       guardar(() => repo.eliminar('usuarios', id))

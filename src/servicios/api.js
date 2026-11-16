@@ -122,6 +122,15 @@ export const horasDelDia = (db, medicoId, fecha) => {
     .map((h) => ({ hora: h, libre: !horaOcupada(db, medicoId, fecha, h) }))
 }
 
+/** Primer turno libre del médico en los días dados: { fecha, hora }, o null si no tiene. */
+export const proximoTurno = (db, medicoId, dias) => {
+  for (const fecha of dias) {
+    const libre = horasDelDia(db, medicoId, fecha).find((h) => h.libre)
+    if (libre) return { fecha, hora: libre.hora }
+  }
+  return null
+}
+
 export const historiaDePaciente = (db, pacienteId) =>
   db.historia.filter((h) => h.pacienteId === pacienteId).sort((a, b) => b.fecha.localeCompare(a.fecha))
 

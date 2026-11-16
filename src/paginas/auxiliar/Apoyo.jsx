@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Icono from '../../componentes/Icono'
 import { useApp } from '../../contexto/AppContext'
 import { listarCitas, buscarUsuario, buscarEspecialidad, nombreMedico } from '../../servicios/api'
-import { HOY, iso, fechaLarga, hora12 } from '../../datos/utiles'
+import { HOY, iso, fechaLarga, hora12, saludo } from '../../datos/utiles'
 import FormularioPaciente from '../FormularioPaciente'
 import { FOTOS } from '../../datos/imagenes'
 
@@ -25,7 +25,7 @@ export default function Apoyo() {
     <div className="vista">
       <div className="banner-foto" style={{ '--foto': `url(${FOTOS.consulta})` }}>
         <span className="tenue">{fechaLarga(iso(HOY))}</span>
-        <h1>Hola, {sesion.nombre.split(' ')[0]}</h1>
+        <h1>{saludo()}, {sesion.nombre.split(' ')[0]}</h1>
         {sesion.puesto && <span className="chip-lugar" style={{ marginTop: '.3rem' }}><Icono nombre="mapa" tam={16} /> {sesion.puesto}</span>}
       </div>
 

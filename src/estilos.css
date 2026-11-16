@@ -1,8 +1,8 @@
 /* ===========================================================
    SISB — Hoja de estilos principal
-   Estilo institucional: fondo blanco, azul como color de acción,
-   superficies planas separadas por líneas finas (sin sombras ni
-   degradados decorativos). Pensado para celular y para usuarios con
+   Estilo institucional: blanco y azul. Fondo gris azulado muy claro,
+   paneles blancos planos separados por líneas finas (sin sombras ni
+   degradados decorativos) y azul como color de acción. Pensado para celular y para usuarios con
    poca experiencia digital: un paso a la vez, botones grandes,
    lenguaje llano.
    =========================================================== */
@@ -12,13 +12,14 @@ img{max-width:100%}
 #root{min-height:100%}
 
 :root{
-  --bg:#FFFFFF;
+  --bg:#F5F8FC;
   --surface:#FFFFFF;
-  --surface-2:#F4F7FB;
+  --surface-2:#F0F4FA;
   --line:#D9E1EC;
   --line-soft:#E8EDF4;
   --ink:#0F1E3D;
   --ink-soft:#5B6A85;
+  --ink-faint:#9AA7BD;
   --primary:#1A56DB;
   --primary-hover:#1546B8;
   --primary-ink:#FFFFFF;
@@ -47,6 +48,7 @@ img{max-width:100%}
     --line-soft:#1B2740;
     --ink:#E8EEF8;
     --ink-soft:#97A5BF;
+    --ink-faint:#6B7A96;
     --primary:#5B8DEF;
     --primary-hover:#79A3F3;
     --primary-ink:#FFFFFF;
@@ -71,6 +73,7 @@ img{max-width:100%}
   --line-soft:#1B2740;
   --ink:#E8EEF8;
   --ink-soft:#97A5BF;
+  --ink-faint:#6B7A96;
   --primary:#5B8DEF;
   --primary-hover:#79A3F3;
   --primary-ink:#FFFFFF;
@@ -139,7 +142,7 @@ svg{display:block}
 .pill.alerta{background:var(--danger-soft); color:var(--danger)}
 .pill.info{background:var(--primary-soft); color:var(--primary)}
 
-label.campo{display:flex; flex-direction:column; gap:.35rem; font-weight:700; font-size:.92rem; color:var(--ink); min-width:0}
+.campo{display:flex; flex-direction:column; gap:.35rem; font-weight:700; font-size:.92rem; color:var(--ink); min-width:0}
 input,select,textarea{
   font:inherit; font-weight:500; color:var(--ink); background:var(--surface); border:1.5px solid var(--line);
   border-radius:10px; padding:.72rem .9rem; min-height:50px; width:100%;
@@ -158,70 +161,121 @@ input:focus,select:focus,textarea:focus{outline:none; border-color:var(--primary
 .pequeno{font-size:.9rem}
 .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 
-/* ---------- login ---------- */
-.portada{min-height:100vh; display:grid; grid-template-columns:1fr}
-@media (min-width:960px){ .portada{grid-template-columns:1fr 1fr} }
-/* Panel izquierdo: foto de una médica con una capa azul encima para que el texto se lea. */
-.portada-info{
-  position:relative; color:#fff;
-  padding:clamp(1.5rem,5vw,3.5rem); display:flex; flex-direction:column; gap:1.4rem; justify-content:flex-end;
-  background:
-    linear-gradient(180deg, rgba(11,37,94,.25) 0%, rgba(11,37,94,.55) 40%, rgba(11,37,94,.93) 78%),
-    var(--foto, none) center 30% / cover no-repeat, #0B255E;
-  min-height:320px;
-}
-@media (min-width:960px){ .portada-info{min-height:100vh; position:sticky; top:0} }
-.portada-info .marca{position:absolute; top:clamp(1.5rem,4vw,2.5rem); left:clamp(1.5rem,5vw,3.5rem); color:#fff}
-.portada-info .marca .logo{background:#fff; color:var(--primary)}
-.portada-info .marca small{color:rgba(255,255,255,.8)}
+/* ---------- marca ---------- */
 .marca{display:flex; align-items:center; gap:.65rem; font-family:var(--font-display); font-weight:800; font-size:1.3rem; letter-spacing:-.02em; color:var(--ink)}
 .marca .logo{width:42px; height:42px; border-radius:10px; background:var(--primary); color:#fff; display:grid; place-items:center; flex:none}
 .marca small{display:block; font-size:.72rem; font-weight:600; color:var(--ink-soft); letter-spacing:0; margin-top:-2px}
-.portada-info h1{font-size:clamp(1.8rem,4.2vw,2.7rem); font-weight:800; letter-spacing:-.035em; line-height:1.1; max-width:16ch; color:#fff}
-.portada-info h1 .resaltado{color:#9CC2FF}
-.portada-info p{color:rgba(255,255,255,.88); max-width:46ch; font-size:1.05rem}
-.puntos{display:grid; gap:.9rem; max-width:480px; padding-top:1.3rem; border-top:1px solid rgba(255,255,255,.25)}
-.punto{display:flex; gap:.8rem; align-items:flex-start; font-size:.96rem}
-.punto .ic-punto{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; flex:none; background:rgba(255,255,255,.14); color:#fff}
-.punto b{display:block; font-size:.96rem}
-.punto span{color:rgba(255,255,255,.78); font-size:.9rem}
-.portada-info .tenue{color:rgba(255,255,255,.6)}
-.credito-foto{font-size:.72rem; color:rgba(255,255,255,.55)}
-.credito-foto a{color:inherit}
+.marca.clara{color:#fff}
+.marca.clara .logo{background:#fff; color:var(--primary)}
+.marca.clara small{color:rgba(255,255,255,.82)}
 
-.portada-form{padding:clamp(1.25rem,5vw,4rem); display:flex; flex-direction:column; justify-content:center; align-items:center}
-.form-card{width:100%; max-width:440px; display:flex; flex-direction:column; gap:1.2rem}
-.form-card h2{font-size:1.6rem; font-weight:800; letter-spacing:-.03em}
-@media (max-width:959px){
-  .portada-info{gap:.8rem; padding-top:6rem; padding-bottom:1.6rem}
-  .portada-info .puntos, .portada-info > p.pequeno, .portada-info .marca small{display:none}
-  .portada-info h1{font-size:clamp(1.6rem,7vw,2.1rem)}
-  .portada-info p{font-size:.96rem}
+/* ---------- inicio de sesión ---------- */
+/* Dos mitades: a la izquierda fotos que rotan con un mensaje corto; a la derecha el formulario. */
+.acceso{min-height:100vh; display:grid; grid-template-columns:1fr; background:var(--surface)}
+@media (min-width:960px){ .acceso{grid-template-columns:minmax(0,1.1fr) minmax(460px,.9fr)} }
+
+.acceso-visual{
+  position:relative; overflow:hidden; isolation:isolate; background:#0B255E; color:#fff;
+  min-height:250px; padding:clamp(1.25rem,4vw,3rem);
+  display:flex; flex-direction:column; justify-content:space-between; gap:1.5rem;
 }
-.roles{display:grid; grid-template-columns:repeat(2,1fr); gap:.5rem}
-@media (min-width:520px){ .roles{grid-template-columns:repeat(4,1fr)} }
-.rol{
-  background:var(--surface); border:1.5px solid var(--line); border-radius:10px; padding:.75rem .4rem;
-  display:flex; flex-direction:column; align-items:center; gap:.4rem; cursor:pointer; text-align:center;
-  font-weight:700; font-size:.85rem; min-height:84px; justify-content:center; color:var(--ink-soft);
-  transition:border-color .15s ease, background-color .15s ease, color .15s ease;
+@media (min-width:960px){ .acceso-visual{position:sticky; top:0; height:100vh} }
+/* Cada foto entra con un fundido y se acerca muy despacio. */
+.acceso-foto{
+  position:absolute; inset:0; z-index:-2; width:100%; height:100%; max-width:none; object-fit:cover;
+  opacity:0; transform:scale(1); transition:opacity 1.4s ease, transform 10s linear;
 }
-.rol .ic-rol{display:grid; place-items:center}
-.rol:hover{border-color:var(--primary); color:var(--primary)}
-.rol[aria-pressed="true"]{border-color:var(--primary); background:var(--primary-soft); color:var(--primary)}
-.rol:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+.acceso-foto[data-activa="true"]{opacity:1; transform:scale(1.07)}
+/* Capa azul: deja ver la foto arriba y oscurece abajo para que el texto se lea. */
+.acceso-velo{
+  position:absolute; inset:0; z-index:-1;
+  background:
+    linear-gradient(180deg, rgba(9,30,78,.6) 0%, rgba(9,30,78,.1) 26%, rgba(9,30,78,.3) 50%, rgba(8,24,64,.95) 100%),
+    rgba(26,86,219,.16);
+}
+.acceso-mensaje{display:flex; flex-direction:column; gap:.9rem; max-width:560px}
+.sobretitulo{font-size:.76rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#B9D2FF}
+.acceso-texto{display:flex; flex-direction:column; justify-content:flex-end; gap:.7rem; animation:subir .7s ease both}
+.acceso-texto h1{font-size:clamp(1.55rem,3.6vw,2.6rem); font-weight:800; letter-spacing:-.035em; line-height:1.1; color:#fff; max-width:17ch}
+.acceso-texto p{color:rgba(255,255,255,.9); font-size:1.06rem; max-width:44ch}
+@media (min-width:960px){ .acceso-texto{min-height:10.5rem} }
+@media (max-width:959px){ .acceso-visual .marca small{display:none} .acceso-texto p{font-size:.96rem} }
+@keyframes subir{from{opacity:0; transform:translateY(12px)}to{opacity:1; transform:none}}
+/* Barras de avance: una por mensaje; la activa se llena mientras dura. */
+.acceso-barras{display:flex; gap:.4rem}
+.acceso-barras button{position:relative; flex:1; max-width:68px; height:24px; padding:0; background:none; border:none; cursor:pointer}
+.acceso-barras button::before{content:''; position:absolute; left:0; right:0; top:10px; height:4px; border-radius:4px; background:rgba(255,255,255,.32)}
+.acceso-barras button:hover::before{background:rgba(255,255,255,.55)}
+.acceso-barras button:focus-visible{outline:2px solid #fff; outline-offset:2px; border-radius:4px}
+.acceso-barras i{position:absolute; left:0; top:10px; height:4px; width:0; border-radius:4px; background:#fff}
+.acceso-barras i.corre{animation:llenar linear both}
+.acceso-barras i.llena{width:100%}
+@keyframes llenar{from{width:0}to{width:100%}}
+
+.acceso-form{
+  padding:clamp(1.5rem,5vw,3.5rem) clamp(1.25rem,5vw,3.5rem); background:var(--surface);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+}
+.acceso-caja{width:100%; max-width:420px; display:flex; flex-direction:column; gap:1.25rem}
+.acceso-caja h2{font-size:1.75rem; font-weight:800; letter-spacing:-.03em}
+.etiqueta{font-weight:700; font-size:.92rem}
+/* Selector de perfil: un solo control con cuatro opciones. */
+.selector-rol{display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding:4px; background:var(--surface-2); border:1px solid var(--line-soft); border-radius:12px}
+.selector-rol button{
+  border:none; background:transparent; border-radius:9px; min-height:64px; padding:.4rem .2rem; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.25rem;
+  font-weight:700; font-size:.82rem; color:var(--ink-soft);
+  transition:background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.selector-rol button:hover{color:var(--primary)}
+.selector-rol button[aria-pressed="true"]{background:var(--surface); color:var(--primary); box-shadow:0 0 0 1.5px var(--primary), 0 2px 6px rgba(26,86,219,.14)}
+.selector-rol button:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+/* Campo con ícono a la izquierda (y botón para ver la contraseña a la derecha). */
+.campo-icono{position:relative; display:block}
+.campo-icono > svg{position:absolute; left:.9rem; top:50%; transform:translateY(-50%); color:var(--ink-soft); pointer-events:none}
+.campo-icono:focus-within > svg{color:var(--primary)}
+.campo-icono input{padding-left:2.75rem}
+.campo-icono.con-boton input{padding-right:3.1rem}
+.ver-clave{
+  position:absolute; right:.25rem; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:8px;
+  display:grid; place-items:center; border:none; background:none; color:var(--ink-soft); cursor:pointer;
+}
+.ver-clave:hover{color:var(--primary); background:var(--primary-soft)}
+.ver-clave:focus-visible{outline:3px solid var(--primary)}
+.enlace{
+  background:none; border:none; padding:0; cursor:pointer; color:var(--primary); font-weight:700; font-size:.88rem;
+  text-decoration:underline; text-decoration-color:transparent; text-underline-offset:3px; transition:text-decoration-color .15s ease;
+}
+.enlace:hover{text-decoration-color:currentColor}
+.enlace:focus-visible{outline:3px solid var(--primary); outline-offset:2px; border-radius:4px}
+.enlace.con-icono{display:inline-flex; align-items:center; gap:.35rem; font-size:.8rem; font-weight:600; color:var(--ink-soft)}
+.enlace.con-icono:hover{color:var(--primary)}
 .separador{display:flex; align-items:center; gap:.8rem; color:var(--ink-soft); font-size:.82rem; font-weight:600}
 .separador::before,.separador::after{content:''; flex:1; height:1px; background:var(--line)}
-.demo{border-top:1px solid var(--line); padding-top:1rem}
-.demo-lista{display:grid; margin-top:.5rem; border:1px solid var(--line); border-radius:10px; overflow:hidden}
+/* Usuarios de prueba: plegados para que no compitan con el formulario. */
+.demo{border:1px solid var(--line); border-radius:12px; background:var(--surface-2); overflow:hidden}
+.demo summary{display:flex; align-items:center; gap:.6rem; padding:.7rem .9rem; min-height:50px; cursor:pointer; font-weight:700; font-size:.9rem; list-style:none}
+.demo summary::-webkit-details-marker{display:none}
+.demo summary > svg{margin-left:auto; color:var(--ink-soft); transition:transform .15s ease}
+.demo[open] summary > svg{transform:rotate(90deg)}
+.demo summary:hover{color:var(--primary)}
+.demo summary:focus-visible{outline:3px solid var(--primary); outline-offset:-3px}
+.demo > .ayuda{padding:0 .9rem .7rem}
+.demo-lista{display:grid; border-top:1px solid var(--line)}
 .demo-item{
-  display:flex; justify-content:space-between; gap:.6rem; align-items:center; width:100%;
-  background:var(--surface); border:none; border-bottom:1px solid var(--line-soft); padding:.65rem .85rem;
-  cursor:pointer; text-align:left; font-size:.92rem; min-height:54px; transition:background-color .12s ease;
+  display:flex; gap:.7rem; align-items:center; width:100%; text-align:left; cursor:pointer; min-height:58px;
+  background:var(--surface); border:none; border-bottom:1px solid var(--line-soft); padding:.6rem .9rem; transition:background-color .12s ease;
 }
 .demo-item:last-child{border-bottom:none}
 .demo-item:hover{background:var(--primary-soft)}
-.demo-item code{font-size:.82rem; color:var(--ink-soft); font-family:var(--font-body); font-weight:700; font-variant-numeric:tabular-nums}
+.demo-item .avatar{width:36px; height:36px; font-size:.78rem; background:var(--primary-soft); color:var(--primary)}
+.demo-item:hover .avatar{background:var(--primary); color:#fff}
+.demo-txt{flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.3}
+.demo-txt b{font-size:.92rem}
+.demo-txt > span{font-size:.82rem; color:var(--ink-soft)}
+.demo-item > svg{color:var(--ink-soft); flex:none}
+.acceso-pie{font-size:.76rem; color:var(--ink-soft); text-align:center}
+.acceso-pie a{color:inherit}
 
 /* ---------- shell app ---------- */
 .shell{display:flex; flex-direction:column; min-height:100vh}
@@ -311,7 +365,7 @@ main{flex:1; width:100%; max-width:1080px; margin:0 auto; padding:clamp(1rem,3vw
 .caja-fecha .mes{font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em}
 
 /* Accesos rápidos: filas con ícono, texto y flecha. */
-.acciones-grandes{display:grid; grid-template-columns:1fr; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.acciones-grandes{display:grid; grid-template-columns:1fr; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
 @media (min-width:760px){ .acciones-grandes{grid-template-columns:1fr 1fr} }
 .accion{
   position:relative; display:grid; grid-template-columns:auto 1fr; column-gap:.9rem; align-items:center;
@@ -331,48 +385,6 @@ main{flex:1; width:100%; max-width:1080px; margin:0 auto; padding:clamp(1rem,3vw
 .accion small{font-weight:500; font-size:.86rem; color:var(--ink-soft); line-height:1.35}
 .accion.principal .ic{background:var(--primary); color:#fff}
 
-.pasos{display:flex; gap:.4rem; align-items:center; flex-wrap:wrap; margin-bottom:.2rem}
-.paso{display:flex; align-items:center; gap:.4rem; font-size:.85rem; font-weight:700; color:var(--ink-soft)}
-.paso .n{width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:var(--surface); border:1.5px solid var(--line); font-size:.8rem}
-.paso[data-estado="activo"]{color:var(--primary)}
-.paso[data-estado="activo"] .n{background:var(--primary); color:#fff; border-color:var(--primary)}
-.paso[data-estado="hecho"]{color:var(--primary)}
-.paso[data-estado="hecho"] .n{background:var(--primary-soft); border-color:var(--primary-soft); color:var(--primary)}
-.paso-sep{flex:1; min-width:12px; height:1.5px; background:var(--line)}
-
-.opciones{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.6rem}
-.opcion{
-  background:var(--surface); border:1.5px solid var(--line); border-radius:10px; padding:.9rem;
-  display:flex; gap:.8rem; align-items:center; cursor:pointer; text-align:left; min-height:76px; color:var(--ink);
-  transition:border-color .15s ease, background-color .15s ease;
-}
-.opcion:hover{border-color:var(--primary)}
-.opcion[aria-pressed="true"]{border-color:var(--primary); background:var(--primary-soft)}
-.opcion:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
-.opcion .ic{width:42px; height:42px; border-radius:10px; background:var(--primary-soft); color:var(--primary); display:grid; place-items:center; flex:none}
-.opcion[aria-pressed="true"] .ic{background:var(--primary); color:#fff}
-.opcion b{display:block; font-size:1rem}
-.opcion small{color:var(--ink-soft); font-size:.86rem; line-height:1.35}
-
-.horas{display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:.5rem}
-.hora{
-  border:1.5px solid var(--line); background:var(--surface); border-radius:10px; min-height:48px; cursor:pointer;
-  font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; transition:border-color .15s ease;
-}
-.hora:hover:not([disabled]):not([aria-pressed="true"]){border-color:var(--primary); color:var(--primary)}
-.hora[aria-pressed="true"]{background:var(--primary); color:#fff; border-color:var(--primary)}
-.hora[disabled]{opacity:.35; cursor:not-allowed; text-decoration:line-through}
-.dias{display:flex; gap:.5rem; overflow-x:auto; padding-bottom:.4rem; scrollbar-width:thin}
-.dia-chip{
-  border:1.5px solid var(--line); background:var(--surface); border-radius:10px; padding:.55rem .7rem; min-width:70px;
-  display:flex; flex-direction:column; align-items:center; gap:.1rem; cursor:pointer; flex:none; color:var(--ink);
-}
-.dia-chip:hover{border-color:var(--primary)}
-.dia-chip .dow{font-size:.72rem; text-transform:uppercase; font-weight:700; color:var(--ink-soft); letter-spacing:.05em}
-.dia-chip .dd{font-family:var(--font-display); font-weight:800; font-size:1.2rem}
-.dia-chip[aria-pressed="true"]{background:var(--primary); border-color:var(--primary); color:#fff}
-.dia-chip[aria-pressed="true"] .dow{color:rgba(255,255,255,.85)}
-
 .tabla-env{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface)}
 table{border-collapse:collapse; width:100%; min-width:520px}
 th,td{text-align:left; padding:.8rem 1rem; border-bottom:1px solid var(--line-soft); font-size:.94rem; vertical-align:middle}
@@ -381,7 +393,7 @@ tbody tr:hover{background:var(--surface-2)}
 tr:last-child td{border-bottom:none}
 
 .vacio{
-  border:1.5px dashed var(--line); border-radius:var(--radius); padding:1.8rem 1.1rem; text-align:center;
+  background:var(--surface); border:1.5px dashed var(--line); border-radius:var(--radius); padding:1.8rem 1.1rem; text-align:center;
   display:flex; flex-direction:column; align-items:center; gap:.6rem; color:var(--ink-soft);
 }
 .vacio > svg{color:var(--primary)}
@@ -420,7 +432,7 @@ tr:last-child td{border-bottom:none}
 @media (prefers-reduced-motion:reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important} }
 
 .banda-conexion{
-  background:var(--surface-2); color:var(--ink-soft); font-size:.8rem; font-weight:600; border-bottom:1px solid var(--line-soft);
+  background:var(--primary-soft); color:#33518F; font-size:.8rem; font-weight:600; border-bottom:1px solid var(--line-soft);
   padding:.35rem clamp(.9rem,3vw,1.5rem); display:flex; gap:.45rem; align-items:center; justify-content:center; text-align:center;
 }
 .banda-conexion svg{color:var(--primary)}
@@ -445,8 +457,10 @@ tr:last-child td{border-bottom:none}
 
 /* ---------- paneles de admin y auxiliar ---------- */
 /* Indicadores: una sola franja dividida, sin tarjetas sueltas. */
-.kpis{display:grid; grid-template-columns:repeat(2,1fr); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.kpis{display:grid; grid-template-columns:repeat(2,1fr); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
 @media (min-width:760px){ .kpis{grid-template-columns:repeat(3,1fr)} }
+/* En celular, si son tres indicadores, el primero ocupa todo el ancho para no dejar una casilla vacía. */
+@media (max-width:759px){ .kpis > .kpi:first-child:nth-last-child(3){grid-column:1 / -1} }
 .kpi{padding:1.1rem 1.2rem; display:flex; flex-direction:column; gap:.15rem; border-right:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); margin:0 -1px -1px 0}
 .kpi .kpi-k{font-size:.82rem; font-weight:700; color:var(--ink-soft); display:flex; align-items:center; gap:.4rem}
 .kpi .kpi-k svg{color:var(--primary)}
@@ -494,7 +508,7 @@ tr:last-child td{border-bottom:none}
 .hora-caja small{display:block; font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; opacity:.8}
 
 .zona-archivo{
-  position:relative; border:2px dashed var(--line); border-radius:var(--radius); padding:1.5rem 1rem;
+  position:relative; background:var(--surface); border:2px dashed var(--line); border-radius:var(--radius); padding:1.5rem 1rem;
   display:flex; flex-direction:column; align-items:center; gap:.4rem; text-align:center; cursor:pointer;
   font-weight:600; color:var(--ink); transition:border-color .15s ease, background-color .15s ease;
 }
@@ -503,7 +517,7 @@ tr:last-child td{border-bottom:none}
 .zona-archivo input{position:absolute; inset:0; opacity:0; cursor:pointer; min-height:0}
 .zona-archivo .ic{width:48px; height:48px; border-radius:12px; display:grid; place-items:center; background:var(--primary-soft); color:var(--primary)}
 .zona-archivo.lista .ic{background:var(--ok); color:#fff}
-.segmentado{display:grid; grid-template-columns:1fr 1fr; border:1.5px solid var(--line); border-radius:10px; overflow:hidden}
+.segmentado{display:grid; grid-template-columns:1fr 1fr; background:var(--surface); border:1.5px solid var(--line); border-radius:10px; overflow:hidden}
 .segmentado label{position:relative; display:flex; align-items:center; justify-content:center; gap:.45rem; min-height:48px; cursor:pointer; font-weight:700; font-size:.9rem; color:var(--ink-soft)}
 .segmentado label + label{border-left:1.5px solid var(--line)}
 .segmentado input{position:absolute; opacity:0; pointer-events:none; min-height:0; width:auto}
@@ -528,27 +542,11 @@ tr:last-child td{border-bottom:none}
 /* Encabezado de perfil */
 .cabecera-perfil{display:flex; align-items:center; gap:1rem; flex-wrap:wrap}
 .cabecera-perfil .avatar{width:64px; height:64px; font-size:1.35rem}
-.datos-tabla{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.datos-tabla{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
 .datos-tabla .dato{padding:.85rem 1rem; border-right:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); margin:0 -1px -1px 0}
 .contador{font-size:.85rem; font-weight:600; color:var(--ink-soft)}
 
 /* ---------- horario del médico ---------- */
-.jornadas{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
-.jornada{display:grid; grid-template-columns:190px 1fr; gap:1rem; align-items:center; padding:.9rem 1.1rem; border-bottom:1px solid var(--line-soft)}
-.jornada:last-child{border-bottom:none}
-.jornada[data-activa="false"]{background:var(--surface-2)}
-@media (max-width:760px){ .jornada{grid-template-columns:1fr} }
-.jornada-dia{display:flex; align-items:center; gap:.8rem; cursor:pointer}
-.jornada-dia b{display:block; font-size:1rem}
-.jornada-dia small{display:block; font-size:.82rem; color:var(--ink-soft)}
-.jornada-bloques{display:grid; grid-template-columns:1fr 1fr; gap:.6rem 1.2rem}
-@media (max-width:560px){ .jornada-bloques{grid-template-columns:1fr} }
-.bloque{display:flex; flex-direction:column; gap:.35rem}
-.bloque-nombre{display:flex; align-items:center; gap:.45rem; font-size:.82rem; font-weight:700; color:var(--ink-soft); cursor:pointer; width:max-content}
-.bloque-nombre input{width:18px; height:18px; min-height:0; accent-color:var(--primary); margin:0}
-.bloque[data-activo="false"] .bloque-nombre{opacity:.75}
-.rango{display:flex; align-items:center; gap:.5rem}
-.rango select{min-height:44px; padding:.45rem .6rem; font-size:.92rem}
 /* Interruptor de encendido/apagado */
 .interruptor{
   appearance:none; -webkit-appearance:none; flex:none; width:46px; height:26px; min-height:0; padding:0; margin:0;
@@ -567,23 +565,6 @@ tr:last-child td{border-bottom:none}
 .barra-guardar[data-visible="false"]{display:none}
 .barra-guardar > span{display:flex; align-items:center; gap:.4rem; font-weight:700; color:var(--accent)}
 @media (max-width:899px){ .barra-guardar{bottom:calc(var(--nav-alto) + .8rem)} }
-
-/* ---------- banner con foto en las pantallas de inicio ---------- */
-.banner-foto{
-  position:relative; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
-  padding:clamp(1.2rem,3vw,1.8rem); min-height:170px; display:flex; flex-direction:column; justify-content:center; gap:.3rem;
-  background:
-    linear-gradient(90deg, #fff 0%, #fff 38%, rgba(255,255,255,.75) 55%, rgba(255,255,255,0) 80%),
-    var(--foto, none) right 20% / cover no-repeat, var(--surface-2);
-}
-.banner-foto > *{max-width:55%}
-.banner-foto h1{font-size:clamp(1.5rem,3vw,1.9rem)}
-@media (max-width:700px){
-  .banner-foto{min-height:150px; background:
-    linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.9) 55%, rgba(255,255,255,.35) 100%),
-    var(--foto, none) 70% 20% / cover no-repeat, var(--surface-2)}
-  .banner-foto > *{max-width:80%}
-}
 
 /* ---------- buscador de pacientes y paginación ---------- */
 .buscador-paciente{display:flex; flex-direction:column; gap:.6rem}
@@ -633,3 +614,200 @@ td.num{white-space:nowrap}
 .pantalla-carga b{font-size:1.4rem; letter-spacing:-.02em}
 .logo-carga{width:46px; height:46px; border-radius:50%; border:4px solid var(--primary-soft); border-top-color:var(--primary); animation:girar .8s linear infinite}
 @keyframes girar{to{transform:rotate(360deg)}}
+
+/* ---------- encabezado con foto en las pantallas de inicio ---------- */
+/* Panel azul con la foto asomando a la derecha: el mismo tratamiento del inicio de sesión. */
+.banner-foto{
+  position:relative; border-radius:var(--radius); overflow:hidden; color:#fff;
+  padding:clamp(1.25rem,3vw,2rem); min-height:176px; display:flex; flex-direction:column; justify-content:center; gap:.3rem;
+  background:
+    linear-gradient(90deg, #0E2F73 0%, #0E2F73 36%, rgba(14,47,115,.8) 56%, rgba(14,47,115,.2) 100%),
+    var(--foto, none) right 24% / 62% auto no-repeat, #0E2F73;
+}
+.banner-foto > *{max-width:56%}
+.banner-foto h1{font-size:clamp(1.5rem,3vw,2rem); color:#fff}
+.banner-foto .tenue{color:rgba(255,255,255,.84)}
+.banner-foto .chip-lugar{color:rgba(255,255,255,.92)}
+.banner-foto .chip-lugar svg{color:#B9D2FF}
+@media (max-width:700px){
+  .banner-foto{min-height:150px; background:
+    linear-gradient(90deg, rgba(14,47,115,.97) 0%, rgba(14,47,115,.9) 55%, rgba(14,47,115,.5) 100%),
+    var(--foto, none) 70% 20% / cover no-repeat, #0E2F73}
+  .banner-foto > *{max-width:88%}
+}
+
+/* ---------- asistente para pedir una cita ---------- */
+.pasos{display:flex; gap:.5rem; align-items:center}
+.paso{
+  display:flex; align-items:center; gap:.45rem; padding:0; background:none; border:none; cursor:default;
+  font-size:.88rem; font-weight:700; color:var(--ink-soft); white-space:nowrap;
+}
+.paso:not([disabled]){cursor:pointer}
+.paso:not([disabled]):hover > span:last-child{text-decoration:underline; text-underline-offset:3px}
+.paso:focus-visible{outline:3px solid var(--primary); outline-offset:3px; border-radius:6px}
+.paso .n{width:30px; height:30px; border-radius:50%; display:grid; place-items:center; flex:none; background:var(--surface); border:1.5px solid var(--line); font-size:.82rem}
+.paso[data-estado="activo"]{color:var(--ink)}
+.paso[data-estado="activo"] .n{background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-soft)}
+.paso[data-estado="hecho"]{color:var(--primary)}
+.paso[data-estado="hecho"] .n{background:var(--primary); border-color:var(--primary); color:#fff}
+.paso-sep{flex:1; min-width:12px; height:2px; border-radius:2px; background:var(--line)}
+.paso-sep[data-hecho="true"]{background:var(--primary)}
+@media (max-width:640px){ .paso:not([data-estado="activo"]) > span:last-child{display:none} }
+
+/* Contenido del paso a la izquierda y el resumen "Tu cita" a la derecha (solo en computador). */
+.asistente{display:grid; gap:1.5rem; align-items:start}
+.asistente[data-resumen="false"]{max-width:760px}
+@media (min-width:940px){ .asistente[data-resumen="true"]{grid-template-columns:minmax(0,1fr) 290px} }
+.titulo-paso{display:flex; flex-direction:column; gap:.2rem}
+.titulo-paso h2{font-size:1.3rem}
+
+/* Opciones para elegir (especialidades y profesionales): filas grandes dentro de un solo marco. */
+.elecciones{display:grid; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
+.eleccion{
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; align-items:center; column-gap:.9rem;
+  width:100%; min-height:76px; padding:.85rem 1rem; text-align:left; cursor:pointer; color:var(--ink);
+  background:var(--surface); border:none; border-bottom:1px solid var(--line-soft); transition:background-color .12s ease;
+}
+.elecciones > .eleccion:last-child{border-bottom:none}
+.eleccion:hover:not([disabled]){background:var(--primary-soft)}
+.eleccion:focus-visible{outline:3px solid var(--primary); outline-offset:-3px}
+.eleccion[aria-pressed="true"]{background:var(--primary-soft); box-shadow:inset 4px 0 0 var(--primary)}
+.eleccion[disabled]{cursor:not-allowed; opacity:.5}
+.eleccion.suelta{border:1.5px solid var(--primary); border-radius:var(--radius)}
+.eleccion .ic{width:46px; height:46px; border-radius:12px; display:grid; place-items:center; flex:none; background:var(--primary-soft); color:var(--primary); transition:background-color .12s ease, color .12s ease}
+.eleccion .ic.lleno, .eleccion:hover:not([disabled]) .ic{background:var(--primary); color:#fff}
+.eleccion .avatar{width:46px; height:46px; font-size:.92rem; background:var(--primary-soft); color:var(--primary)}
+.eleccion:hover:not([disabled]) .avatar, .eleccion[aria-pressed="true"] .avatar{background:var(--primary); color:#fff}
+.eleccion-txt{min-width:0; display:flex; flex-direction:column; gap:.1rem}
+.eleccion-txt b{font-size:1.02rem}
+.eleccion-txt small{font-size:.86rem; color:var(--ink-soft); line-height:1.35}
+.eleccion-meta{display:flex; flex-direction:column; align-items:flex-end; text-align:right; line-height:1.3}
+.eleccion-meta small{font-size:.76rem; font-weight:600; color:var(--ink-soft)}
+.eleccion-meta b{font-size:.92rem; color:var(--primary); font-variant-numeric:tabular-nums; white-space:nowrap}
+.eleccion > svg{color:var(--ink-soft)}
+.eleccion:hover:not([disabled]) > svg{color:var(--primary)}
+@media (max-width:600px){
+  .eleccion{grid-template-columns:auto minmax(0,1fr) auto; row-gap:.3rem}
+  .eleccion > .ic, .eleccion > .avatar{grid-row:1 / span 2; align-self:start}
+  .eleccion-meta{grid-column:2; grid-row:2; flex-direction:row; align-items:baseline; gap:.4rem; text-align:left}
+  .eleccion > svg{grid-column:3; grid-row:1 / span 2}
+}
+/* Días de la semana en que atiende un profesional. */
+.dias-atiende{display:flex; gap:3px; margin-top:.35rem}
+.dias-atiende i{
+  font-style:normal; font-size:.68rem; font-weight:700; text-transform:capitalize; min-width:27px; padding:.12rem 0;
+  text-align:center; border-radius:5px; color:var(--ink-faint);
+}
+.dias-atiende i[data-si="true"]{background:#DBE7FB; color:var(--primary)}
+
+/* Día y hora: primero el calendario y debajo las horas de ese día. */
+.dia-hora{display:grid; gap:1.4rem}
+.dia-hora h3{font-size:1.02rem}
+.cal{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px}
+.cal-dow{text-align:center; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); padding-bottom:.15rem}
+.cal-dia{
+  min-height:52px; padding:0; border:1.5px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink); cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1.15;
+  transition:border-color .12s ease, background-color .12s ease;
+}
+.cal-dia .num{font-size:1.05rem; font-weight:800}
+.cal-dia small{font-size:.6rem; font-weight:700; color:var(--primary); white-space:nowrap}
+.cal-dia:hover:not([disabled]):not([aria-pressed="true"]){border-color:var(--primary); background:var(--primary-soft)}
+.cal-dia:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+.cal-dia[data-hoy="true"]{border-color:var(--primary)}
+.cal-dia[aria-pressed="true"]{background:var(--primary); border-color:var(--primary); color:#fff}
+.cal-dia[aria-pressed="true"] small{color:#fff}
+.cal-dia[disabled]{cursor:not-allowed; background:var(--surface-2); border-color:transparent; color:var(--ink-faint)}
+.cal-dia[disabled] small{color:var(--ink-faint); font-weight:600}
+.cal-dia[data-fuera="true"]{background:transparent; opacity:.5}
+@media (max-width:520px){
+  /* En celular no cabe el texto: un punto azul marca los días con horas libres. */
+  .cal-dia{min-height:46px}
+  .cal-dia small{font-size:0; width:6px; height:6px; margin-top:3px; border-radius:50%; background:var(--primary)}
+  .cal-dia[disabled] small{background:transparent}
+  .cal-dia[aria-pressed="true"] small{background:#fff}
+}
+.grupo-horas{display:flex; flex-direction:column; gap:.5rem}
+.grupo-horas-nombre{display:flex; align-items:center; gap:.4rem; font-size:.84rem; font-weight:700; color:var(--ink-soft)}
+.grupo-horas-nombre svg{color:var(--accent)}
+.horas{display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:.45rem}
+.hora{
+  min-height:46px; border:1.5px solid var(--line); border-radius:10px; background:var(--surface); cursor:pointer;
+  font-weight:700; font-size:.94rem; color:var(--ink); font-variant-numeric:tabular-nums;
+  transition:border-color .12s ease, background-color .12s ease;
+}
+@media (max-width:520px){ .horas{grid-template-columns:repeat(3,minmax(0,1fr))} .hora{font-size:.86rem} }
+.hora:hover:not([disabled]):not([aria-pressed="true"]){border-color:var(--primary); color:var(--primary); background:var(--primary-soft)}
+.hora:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+.hora[aria-pressed="true"]{background:var(--primary); color:#fff; border-color:var(--primary)}
+.hora[disabled]{cursor:not-allowed; text-decoration:line-through; font-weight:600; color:var(--ink-faint); background:var(--surface-2); border-color:transparent}
+
+/* Resumen que se va llenando a medida que se elige. */
+.resumen-cita{
+  position:sticky; top:84px; display:flex; flex-direction:column;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem;
+}
+.resumen-cita h2{margin-bottom:.7rem}
+.resumen-linea{display:flex; gap:.7rem; align-items:center; padding:.55rem 0; border-top:1px solid var(--line-soft)}
+.resumen-linea .ic{width:34px; height:34px; border-radius:9px; display:grid; place-items:center; flex:none; background:var(--surface-2); color:var(--ink-faint)}
+.resumen-linea[data-listo="true"] .ic{background:var(--primary-soft); color:var(--primary)}
+.resumen-linea[data-listo="false"] .v{color:var(--ink-faint); font-weight:500}
+@media (max-width:939px){ .resumen-cita{display:none} }
+.para-quien{display:flex; gap:.9rem; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:.8rem 1rem}
+.para-quien .avatar{background:var(--primary-soft); color:var(--primary)}
+.para-quien .cuerpo{flex:1; min-width:0; display:flex; flex-direction:column}
+.item.recordatorio{background:var(--primary-soft); border:none; border-radius:10px}
+
+/* ---------- horario del médico ---------- */
+/* A la izquierda se edita cada día; a la derecha se ve cómo queda la semana. */
+.horario-cuerpo{display:grid; gap:1.6rem; align-items:start}
+@media (min-width:980px){ .horario-cuerpo{grid-template-columns:minmax(0,1fr) 330px} }
+.dias-horario{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
+.dia-horario{display:grid; gap:.7rem; padding:.9rem 1.1rem; border-bottom:1px solid var(--line-soft)}
+.dia-horario:last-child{border-bottom:none}
+.dia-horario[data-activo="false"]{background:var(--surface-2)}
+@media (min-width:700px){ .dia-horario{grid-template-columns:178px minmax(0,1fr); align-items:start; gap:1rem} }
+.dia-horario-cabeza{display:flex; flex-direction:column; align-items:flex-start; gap:.5rem}
+.dia-horario-nombre{display:flex; align-items:center; gap:.8rem; cursor:pointer}
+.dia-horario-nombre b{display:block; font-size:1rem}
+.dia-horario-nombre small{display:block; font-size:.82rem; color:var(--ink-soft)}
+.franjas{display:flex; flex-direction:column; gap:.45rem}
+.franja{display:flex; align-items:center; gap:.45rem; min-width:0; background:var(--surface-2); border:1px solid var(--line-soft); border-radius:10px; padding:.35rem .4rem .35rem .75rem}
+.franja-nombre{display:flex; align-items:center; gap:.35rem; min-width:80px; font-size:.86rem; font-weight:700}
+.franja-nombre svg{color:var(--accent)}
+.franja select{flex:1; min-width:0; min-height:42px; padding:.35rem .4rem; font-size:.86rem; font-weight:600}
+.franja .iconbtn{border-color:transparent; background:transparent}
+.franja .iconbtn:hover{color:var(--danger); border-color:var(--danger); background:var(--danger-soft)}
+@media (max-width:480px){
+  /* En celular: el nombre y el botón de quitar arriba, las dos horas debajo. */
+  .franja{display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); grid-template-areas:"nombre nombre quitar" "desde a hasta"; row-gap:.2rem}
+  .franja-nombre{grid-area:nombre}
+  .franja .iconbtn{grid-area:quitar; justify-self:end}
+  .franja select:first-of-type{grid-area:desde}
+  .franja > .tenue{grid-area:a}
+  .franja select:last-of-type{grid-area:hasta}
+}
+.agregar-franja{
+  display:flex; align-items:center; justify-content:center; gap:.4rem; min-height:46px; cursor:pointer;
+  border:1.5px dashed var(--line); border-radius:10px; background:transparent; color:var(--ink-soft); font-weight:700; font-size:.88rem;
+}
+.agregar-franja:hover{border-color:var(--primary); color:var(--primary); background:var(--primary-soft)}
+.agregar-franja:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+/* Vista de la semana: una columna por día y un bloque azul por cada franja de atención. */
+.semana-vista{display:flex; flex-direction:column; gap:.8rem; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem; order:-1}
+@media (min-width:980px){ .semana-vista{position:sticky; top:84px; order:0} }
+.sv{display:grid; grid-template-columns:42px repeat(6,minmax(0,1fr)); gap:4px}
+.sv-eje{position:relative; height:266px; margin-top:24px}
+.sv-eje span{position:absolute; right:6px; transform:translateY(-50%); font-size:.62rem; font-weight:600; color:var(--ink-soft); white-space:nowrap}
+.sv-dia{display:flex; flex-direction:column; gap:6px; min-width:0}
+.sv-dia b{height:18px; text-align:center; font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint)}
+.sv-dia[data-activo="true"] b{color:var(--ink)}
+.sv-carril{
+  position:relative; height:266px; border-radius:8px; overflow:hidden;
+  background:repeating-linear-gradient(180deg, var(--line) 0 1px, transparent 1px 38px), var(--surface-2);
+}
+.sv-carril i{
+  position:absolute; left:3px; right:3px; border-radius:6px; background:var(--primary); color:#fff; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:3px 0;
+  font-style:normal; font-size:.62rem; font-weight:700; font-variant-numeric:tabular-nums; transition:top .2s ease, height .2s ease;
+}

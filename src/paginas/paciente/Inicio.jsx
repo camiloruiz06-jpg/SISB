@@ -5,7 +5,7 @@ import ItemHistoria from '../../componentes/ItemHistoria'
 import { useApp } from '../../contexto/AppContext'
 import { listarCitas, buscarUsuario, buscarEspecialidad, nombreMedico, historiaDePaciente, tramitesDePaciente } from '../../servicios/api'
 import { FOTOS } from '../../datos/imagenes'
-import { HOY, iso, desdeIso, fechaLarga, relativo, hora12, MESES } from '../../datos/utiles'
+import { HOY, iso, desdeIso, fechaLarga, relativo, hora12, saludo, MESES } from '../../datos/utiles'
 
 export default function Inicio() {
   const { db, sesion } = useApp()
@@ -19,7 +19,7 @@ export default function Inicio() {
     <div className="vista">
       <div className="banner-foto" style={{ '--foto': `url(${FOTOS.consulta})` }}>
         <span className="tenue">{fechaLarga(iso(HOY))}</span>
-        <h1>Hola, {sesion.nombre.split(' ')[0]}</h1>
+        <h1>{saludo()}, {sesion.nombre.split(' ')[0]}</h1>
         <span className="tenue">Tu salud, cerca de casa.</span>
         {sesion.municipio && <span className="chip-lugar" style={{ marginTop: '.3rem' }}><Icono nombre="mapa" tam={16} /> {sesion.municipio}</span>}
       </div>
