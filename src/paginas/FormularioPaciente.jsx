@@ -48,8 +48,8 @@ export default function FormularioPaciente({ alTerminar, alCancelar, conRol = fa
 
         {rol === 'paciente' && <>
           <label className="campo">Fecha de nacimiento<input name="nac" type="date" /></label>
-          <label className="campo">Municipio *<input name="municipio" required placeholder="Ej: Repelón, Atlántico" /></label>
-          <label className="campo">Vereda o corregimiento<input name="vereda" placeholder="Ej: Vereda Las Tablas" /></label>
+          <label className="campo">Municipio *<input name="municipio" required placeholder="Ej: Pueblo Nuevo, Córdoba" /></label>
+          <label className="campo">Vereda o corregimiento<input name="vereda" placeholder="Ej: Corregimiento Cintura" /></label>
           <label className="campo">EPS<input name="eps" placeholder="Ej: Mutual SER" /></label>
         </>}
 
@@ -66,8 +66,8 @@ export default function FormularioPaciente({ alTerminar, alCancelar, conRol = fa
         </>}
 
         {rol === 'auxiliar' && <>
-          <label className="campo">Puesto de salud *<input name="puesto" required placeholder="Ej: Puesto de salud Luruaco" /></label>
-          <label className="campo">Municipio *<input name="municipio" required placeholder="Ej: Luruaco, Atlántico" /></label>
+          <label className="campo">Puesto de salud *<input name="puesto" required placeholder="Ej: Puesto de salud Pueblo Nuevo" /></label>
+          <label className="campo">Municipio *<input name="municipio" required placeholder="Ej: Pueblo Nuevo, Córdoba" /></label>
         </>}
 
         <label className="campo">Contraseña *

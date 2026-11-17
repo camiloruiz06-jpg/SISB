@@ -23,19 +23,19 @@ const NOMBRES_M = ['José', 'Luis', 'Carlos', 'Jorge', 'Rafael', 'Manuel', 'Pedr
 const NOMBRES_F = ['María', 'Ana', 'Luz', 'Carmen', 'Rosa', 'Yolanda', 'Marta', 'Gloria', 'Diana', 'Paola', 'Yuranis', 'Yesenia', 'Katerine', 'Luisa', 'Sandra', 'Liliana', 'Nelly', 'Dalgis', 'Eneida', 'Ledis', 'Milena', 'Johana', 'Ingrid', 'Daniela', 'Valentina', 'Mariana', 'Edilma', 'Osiris', 'Zunilda', 'Petrona']
 const SEGUNDOS_M = ['', '', '', 'José', 'Andrés', 'Antonio', 'Enrique', 'Alfonso', 'David', 'Rafael']
 const SEGUNDOS_F = ['', '', '', 'del Carmen', 'Isabel', 'Elena', 'Patricia', 'Fernanda', 'Cecilia', 'Rosa']
-const APELLIDOS = ['Martínez', 'Rodríguez', 'Pérez', 'Gómez', 'Hernández', 'Díaz', 'Jiménez', 'Torres', 'Barrios', 'Mendoza', 'Ariza', 'Polo', 'Charris', 'De la Hoz', 'Orozco', 'Pacheco', 'Ospino', 'Cantillo', 'Rada', 'Fontalvo', 'Navarro', 'Escorcia', 'Montero', 'Villa', 'Caro', 'Guerrero', 'Padilla', 'Ruiz', 'Salcedo', 'Mejía', 'Rojano', 'Cassiani', 'Epiayú', 'Uriana', 'Pushaina', 'Simanca', 'Julio', 'Cabarcas', 'Olivo', 'Sarmiento']
+const APELLIDOS = ['Martínez', 'Rodríguez', 'Pérez', 'Gómez', 'Hernández', 'Díaz', 'Jiménez', 'Torres', 'Barrios', 'Mendoza', 'Ariza', 'Polo', 'Charris', 'De la Hoz', 'Orozco', 'Pacheco', 'Ospino', 'Cantillo', 'Rada', 'Fontalvo', 'Navarro', 'Escorcia', 'Montero', 'Villa', 'Caro', 'Guerrero', 'Padilla', 'Ruiz', 'Salcedo', 'Mejía', 'Rojano', 'Doria', 'Petro', 'Negrete', 'Arrieta', 'Simanca', 'Julio', 'Cabarcas', 'Olivo', 'Sarmiento', 'Hoyos', 'Sotelo', 'Banda', 'Vergara', 'Genes', 'Bula', 'Lozano', 'Montes']
 
+/* Municipios de Córdoba. El primero (Pueblo Nuevo) es donde arranca el piloto y por eso tiene más pacientes. */
 const MUNICIPIOS = [
-  ['Repelón', 'Atlántico'], ['Sabanalarga', 'Atlántico'], ['Luruaco', 'Atlántico'], ['Manatí', 'Atlántico'],
-  ['Campo de la Cruz', 'Atlántico'], ['Candelaria', 'Atlántico'], ['Santa Lucía', 'Atlántico'], ['Suan', 'Atlántico'],
-  ['Piojó', 'Atlántico'], ['Ponedera', 'Atlántico'], ['María la Baja', 'Bolívar'], ['San Jacinto', 'Bolívar'],
-  ['El Carmen de Bolívar', 'Bolívar'], ['Mompox', 'Bolívar'], ['Aracataca', 'Magdalena'], ['Plato', 'Magdalena'],
-  ['Pivijay', 'Magdalena'], ['Zona Bananera', 'Magdalena'], ['Tierralta', 'Córdoba'], ['San Bernardo del Viento', 'Córdoba'],
-  ['Ovejas', 'Sucre'], ['San Onofre', 'Sucre'], ['Uribia', 'La Guajira'], ['Manaure', 'La Guajira'], ['Pueblo Bello', 'Cesar']
-]
-const VEREDAS = ['Las Tablas', 'Rotinet', 'Villa Rosa', 'Pital de Megua', 'El Porvenir', 'Arroyo de Piedra', 'Bajo Grande', 'La Peña',
-  'Las Mercedes', 'Cien Pesos', 'Santa Rosa', 'El Limón', 'Palmar de Candelaria', 'San José', 'El Guamo', 'Caño Negro', 'Corral de Piedra']
-const EPS = ['Mutual SER', 'Nueva EPS', 'Cajacopi', 'Coosalud', 'Salud Total', 'Famisanar', 'Asociación Mutual Barrios Unidos'] // Anas Wayuu solo se asigna en La Guajira
+  'Pueblo Nuevo', 'Planeta Rica', 'Sahagún', 'Ciénaga de Oro', 'Buenavista', 'La Apartada', 'Montelíbano', 'Ayapel',
+  'Chinú', 'San Carlos', 'Cereté', 'San Pelayo', 'Lorica', 'Tierralta', 'Valencia', 'Puerto Libertador',
+  'Tuchín', 'San Andrés de Sotavento', 'Momil', 'Purísima', 'Chimá', 'Cotorra', 'Moñitos', 'San Bernardo del Viento', 'Canalete'
+].map((m) => [m, 'Córdoba'])
+const VEREDAS = ['Cintura', 'Puerto Santo', 'Neiva', 'Betulia', 'El Varal', 'Palmira', 'Corcovao', 'La Granjita', 'El Campano',
+  'Los Limones', 'Santa Rosa', 'Las Mercedes', 'El Porvenir', 'San José', 'La Esperanza', 'Caño Viejo', 'Nueva Esperanza']
+const EPS = ['Nueva EPS', 'Coosalud', 'Mutual SER', 'Salud Total', 'Cajacopi', 'Sanitas']
+/* En el resguardo zenú (Tuchín y San Andrés de Sotavento) mucha gente está en la EPS indígena Manexka. */
+const ZENU = ['Tuchín', 'San Andrés de Sotavento']
 
 const MOTIVOS = {
   e1: ['Fiebre y malestar general desde hace tres días.', 'Tos con flema que no se quita.', 'Dolor de cabeza frecuente.', 'Control de presión arterial.', 'Diarrea y dolor de barriga.', 'Dolor en la espalda baja al trabajar en el campo.', 'Renovar la fórmula de la tensión.', 'Mareos al levantarme.'],
@@ -107,7 +107,7 @@ export function generarDatos(base) {
     })
   })
 
-  /* --- auxiliares: uno por municipio (Repelón ya tiene a Nelson) --- */
+  /* --- auxiliares: uno por municipio (Pueblo Nuevo ya tiene a Nelson) --- */
   MUNICIPIOS.slice(1).forEach(([mun, dep], i) => {
     const mujer = azar() < 0.6
     usuarios.push({
@@ -130,7 +130,7 @@ export function generarDatos(base) {
       nombre: [uno(mujer ? NOMBRES_F : NOMBRES_M), segundo, uno(APELLIDOS), uno(APELLIDOS)].filter(Boolean).join(' '),
       nac: iso(nac), tel: celular(), municipio: mun + ', ' + dep,
       vereda: (azar() < 0.5 ? 'Vereda ' : 'Corregimiento ') + uno(VEREDAS),
-      eps: dep === 'La Guajira' && azar() < 0.6 ? 'Anas Wayuu' : uno(EPS),
+      eps: ZENU.includes(mun) && azar() < 0.6 ? 'Manexka' : uno(EPS),
       puesto: 'Puesto de salud ' + mun
     }
     pacientes.push(p)

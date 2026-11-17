@@ -200,7 +200,7 @@ function Carrusel() {
       </div>
 
       <div className="acceso-mensaje">
-        <span className="sobretitulo">Telesalud para el campo colombiano</span>
+        <span className="sobretitulo">Telesalud para los municipios de Córdoba</span>
         <div className="acceso-texto" key={activa}>
           <h1>{m.titulo}</h1>
           <p>{m.texto}</p>

@@ -17,12 +17,12 @@ export const especialidades = [
 
 export const usuarios = [
   { id: 'u1', rol: 'paciente', doc: '1045882331', clave: '1234', nombre: 'María Paulina Gutiérrez',
-    nac: '1991-03-14', tel: '310 455 2201', municipio: 'Repelón, Atlántico',
-    vereda: 'Vereda Las Tablas', eps: 'Mutual SER', puesto: 'Puesto de salud Repelón' },
+    nac: '1991-03-14', tel: '310 455 2201', municipio: 'Pueblo Nuevo, Córdoba',
+    vereda: 'Corregimiento Cintura', eps: 'Mutual SER', puesto: 'Puesto de salud Pueblo Nuevo' },
 
   { id: 'u2', rol: 'paciente', doc: '8744120', clave: '1234', nombre: 'José Nel Ariza Mendoza',
-    nac: '1958-11-02', tel: '312 880 4417', municipio: 'Sabanalarga, Atlántico',
-    vereda: 'Corregimiento Isabel López', eps: 'Nueva EPS', puesto: 'Centro de salud Isabel López' },
+    nac: '1958-11-02', tel: '312 880 4417', municipio: 'Pueblo Nuevo, Córdoba',
+    vereda: 'Corregimiento Puerto Santo', eps: 'Nueva EPS', puesto: 'Puesto de salud Pueblo Nuevo' },
 
   { id: 'u3', rol: 'medico', doc: '52998114', clave: '1234', nombre: 'Luz Mery Pacheco',
     titulo: 'Dra.', espId: 'e1', registro: 'RM 88-2214', tel: '300 220 1190',
@@ -49,7 +49,7 @@ export const usuarios = [
       4: { manana: ['07:30', '11:30'], tarde: ['14:00', '16:30'] } } } },
 
   { id: 'u6', rol: 'auxiliar', doc: '1082331445', clave: '1234', nombre: 'Nelson Barrios Molina',
-    puesto: 'Puesto de salud Repelón', tel: '318 440 7712' },
+    puesto: 'Puesto de salud Pueblo Nuevo', tel: '318 440 7712' },
 
   { id: 'u7', rol: 'admin', doc: '1140899210', clave: '1234', nombre: 'Camilo Ruiz Alquichire',
     cargo: 'Administrador del sistema' }
@@ -79,7 +79,7 @@ export const historia = [
     detalle: 'Embarazo de curso normal. Tensión 110/70, peso 64 kg. Se ordenan exámenes del tercer trimestre.' },
 
   { id: 'h2', pacienteId: 'u1', fecha: iso(sumaDias(HOY, -14)), tipo: 'resultado',
-    titulo: 'Cuadro hemático completo', autor: 'Laboratorio Hospital de Repelón',
+    titulo: 'Cuadro hemático completo', autor: 'Laboratorio Hospital de Pueblo Nuevo',
     detalle: 'Hemoglobina 10.9 g/dL. Leve anemia, se indica suplemento de hierro.', archivo: 'cuadro-hematico.pdf' },
 
   { id: 'h3', pacienteId: 'u1', fecha: iso(sumaDias(HOY, -200)), tipo: 'documento',
@@ -91,19 +91,19 @@ export const historia = [
     detalle: 'Tensión 140/90. Se mantiene losartán 50 mg cada 12 horas.' },
 
   { id: 'h5', pacienteId: 'u2', fecha: iso(sumaDias(HOY, -40)), tipo: 'resultado',
-    titulo: 'Creatinina y glicemia', autor: 'Laboratorio Sabanalarga',
+    titulo: 'Creatinina y glicemia', autor: 'Laboratorio Hospital de Pueblo Nuevo',
     detalle: 'Creatinina 1.1 mg/dL. Glicemia 118 mg/dL.', archivo: 'quimica-sanguinea.pdf' }
 ]
 
 export const tramites = [
   { id: 't1', pacienteId: 'u1', titulo: 'Ecografía obstétrica de tercer trimestre', estado: 'pendiente',
-    detalle: 'Pedir cita en el hospital de Repelón. Llevar la orden impresa.', fecha: iso(sumaDias(HOY, -21)) },
+    detalle: 'Pedir cita en el hospital de Pueblo Nuevo. Llevar la orden impresa.', fecha: iso(sumaDias(HOY, -21)) },
   { id: 't2', pacienteId: 'u1', titulo: 'Reclamar suplemento de hierro', estado: 'pendiente',
     detalle: 'Farmacia del puesto de salud. Mostrar la fórmula médica.', fecha: iso(sumaDias(HOY, -14)) },
   { id: 't3', pacienteId: 'u1', titulo: 'Cuadro hemático', estado: 'listo',
     detalle: 'Resultado ya cargado en tu historia clínica.', fecha: iso(sumaDias(HOY, -14)) },
   { id: 't4', pacienteId: 'u2', titulo: 'Autorización de nefrología', estado: 'pendiente',
-    detalle: 'Radicar en la EPS Nueva EPS, sede Sabanalarga.', fecha: iso(sumaDias(HOY, -30)) }
+    detalle: 'Radicar en la Nueva EPS, sede Planeta Rica.', fecha: iso(sumaDias(HOY, -30)) }
 ]
 
 export const formulas = [
