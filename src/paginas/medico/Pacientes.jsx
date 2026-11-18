@@ -55,7 +55,7 @@ export default function Pacientes() {
           <span className="sr">Buscar paciente</span>
           <Icono nombre="buscar" tam={19} />
           <input type="search" value={texto} onChange={(e) => cambiar(setTexto)(e.target.value)}
-                 placeholder="Cédula, nombre, municipio o vereda" autoFocus />
+                 placeholder="Cédula, nombre, vereda o corregimiento" autoFocus />
         </label>
         <div className="filtros" role="group" aria-label="Qué pacientes ver">
           <button className="filtro" aria-pressed={alcance === 'mios'} onClick={() => cambiar(setAlcance)('mios')}>
@@ -84,7 +84,7 @@ export default function Pacientes() {
                           <span className="avatar">{iniciales(p.nombre)}</span>
                           <div style={{ minWidth: 0 }}>
                             <b>{p.nombre}</b>
-                            <div className="tenue pequeno">{p.municipio}{p.vereda ? ' · ' + p.vereda : ''}</div>
+                            <div className="tenue pequeno">{p.vereda || p.municipio}</div>
                           </div>
                         </div>
                       </td>

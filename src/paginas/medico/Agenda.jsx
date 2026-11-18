@@ -90,7 +90,7 @@ export default function Agenda() {
                   <span className="hora-caja">{hh}<small>{ampm.join(' ')}</small></span>
                   <div className="quien">
                     <b>{p.nombre}</b>
-                    <span>C.C. {p.doc} · {p.municipio}</span>
+                    <span>C.C. {p.doc} · {p.vereda || p.municipio}</span>
                     <span>{c.motivo}</span>
                   </div>
                   <div className="fila acciones-cita" style={{ gap: '.4rem', justifyContent: 'flex-end' }}>

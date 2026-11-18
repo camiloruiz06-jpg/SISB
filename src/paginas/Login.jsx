@@ -25,7 +25,7 @@ const RUTA_INICIAL = { paciente: '/paciente', medico: '/medico', auxiliar: '/aux
 /* Mensajes que rotan sobre las fotos del lado izquierdo. */
 const MENSAJES = [
   { foto: FOTOS.vereda, pos: 'center 25%', titulo: 'La consulta médica llega hasta tu vereda',
-    texto: 'Pide tu cita y habla con el médico por videollamada, sin salir de tu municipio.' },
+    texto: 'Pide tu cita y habla con el médico por videollamada, sin salir de tu corregimiento.' },
   { foto: FOTOS.celular, pos: 'center 35%', titulo: 'Funciona con internet lento',
     texto: 'Si se corta la llamada, vuelves a entrar con el mismo botón y tu cita sigue ahí.' },
   { foto: FOTOS.cercania, pos: 'center 30%', titulo: 'Nunca entras solo',
@@ -148,7 +148,7 @@ export default function Login() {
                     <span className="demo-txt">
                       <b>{p.rol === 'medico' ? nombreMedico(p) : p.nombre}</b>
                       <span>
-                        {p.rol === 'medico' ? ESPECIALIDADES_PRUEBA.find((e) => e.id === p.espId).nombre : (p.municipio || p.puesto || p.cargo || '')}
+                        {p.rol === 'medico' ? ESPECIALIDADES_PRUEBA.find((e) => e.id === p.espId).nombre : (p.vereda || p.puesto || p.cargo || '')}
                         {' · '}<span className="num">{p.doc}</span>
                       </span>
                     </span>
@@ -200,7 +200,7 @@ function Carrusel() {
       </div>
 
       <div className="acceso-mensaje">
-        <span className="sobretitulo">Telesalud para los municipios de Córdoba</span>
+        <span className="sobretitulo">Telesalud rural · Pueblo Nuevo, Córdoba</span>
         <div className="acceso-texto" key={activa}>
           <h1>{m.titulo}</h1>
           <p>{m.texto}</p>

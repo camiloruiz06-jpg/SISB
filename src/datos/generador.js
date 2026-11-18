@@ -25,17 +25,26 @@ const SEGUNDOS_M = ['', '', '', 'José', 'Andrés', 'Antonio', 'Enrique', 'Alfon
 const SEGUNDOS_F = ['', '', '', 'del Carmen', 'Isabel', 'Elena', 'Patricia', 'Fernanda', 'Cecilia', 'Rosa']
 const APELLIDOS = ['Martínez', 'Rodríguez', 'Pérez', 'Gómez', 'Hernández', 'Díaz', 'Jiménez', 'Torres', 'Barrios', 'Mendoza', 'Ariza', 'Polo', 'Charris', 'De la Hoz', 'Orozco', 'Pacheco', 'Ospino', 'Cantillo', 'Rada', 'Fontalvo', 'Navarro', 'Escorcia', 'Montero', 'Villa', 'Caro', 'Guerrero', 'Padilla', 'Ruiz', 'Salcedo', 'Mejía', 'Rojano', 'Doria', 'Petro', 'Negrete', 'Arrieta', 'Simanca', 'Julio', 'Cabarcas', 'Olivo', 'Sarmiento', 'Hoyos', 'Sotelo', 'Banda', 'Vergara', 'Genes', 'Bula', 'Lozano', 'Montes']
 
-/* Municipios de Córdoba. El primero (Pueblo Nuevo) es donde arranca el piloto y por eso tiene más pacientes. */
-const MUNICIPIOS = [
-  'Pueblo Nuevo', 'Planeta Rica', 'Sahagún', 'Ciénaga de Oro', 'Buenavista', 'La Apartada', 'Montelíbano', 'Ayapel',
-  'Chinú', 'San Carlos', 'Cereté', 'San Pelayo', 'Lorica', 'Tierralta', 'Valencia', 'Puerto Libertador',
-  'Tuchín', 'San Andrés de Sotavento', 'Momil', 'Purísima', 'Chimá', 'Cotorra', 'Moñitos', 'San Bernardo del Viento', 'Canalete'
-].map((m) => [m, 'Córdoba'])
-const VEREDAS = ['Cintura', 'Puerto Santo', 'Neiva', 'Betulia', 'El Varal', 'Palmira', 'Corcovao', 'La Granjita', 'El Campano',
-  'Los Limones', 'Santa Rosa', 'Las Mercedes', 'El Porvenir', 'San José', 'La Esperanza', 'Caño Viejo', 'Nueva Esperanza']
+/* SISB arranca solo en Pueblo Nuevo (Córdoba): la cabecera y su zona rural.
+   Cada corregimiento tiene su puesto de salud y, alrededor, veredas y caseríos.
+   Los nombres de veredas y caseríos son de ejemplo: se cambian aquí por los reales. */
+const MUNICIPIO = 'Pueblo Nuevo, Córdoba'
+const ZONAS = [
+  ['Cintura', ['El Totumo', 'Los Mangos', 'La Ceiba']],
+  ['Pueblo Nuevo', ['El Retiro', 'San Isidro', 'La Unión']],            // veredas cercanas a la cabecera
+  ['Puerto Santo', ['Caño Prieto', 'Boca de López', 'El Pozón']],
+  ['Neiva', ['Guayabal', 'Las Flores', 'Pozo Hondo']],
+  ['Betulia', ['El Tesoro', 'Bijagual', 'Mata de Caña']],
+  ['El Varal', ['El Brillante', 'Santa Fe', 'Las Palmas']],
+  ['Palmira', ['La Esperanza', 'El Carmen', 'Nueva Vida']],
+  ['Corcovao', ['Altos del Rosario', 'El Diamante', 'Caño Viejo']],
+  ['La Granjita', ['Los Almendros', 'El Recreo', 'Villa Luz']],
+  ['Los Limones', ['El Porvenir', 'Santa Rosa', 'San José']],
+  ['Arenas del Norte', ['La Floresta', 'El Silencio', 'Bella Vista']],
+  ['El Campano', ['Las Mercedes', 'El Paraíso', 'Media Luna']]
+]
+const puestoDe = (zona) => 'Puesto de salud ' + zona
 const EPS = ['Nueva EPS', 'Coosalud', 'Mutual SER', 'Salud Total', 'Cajacopi', 'Sanitas']
-/* En el resguardo zenú (Tuchín y San Andrés de Sotavento) mucha gente está en la EPS indígena Manexka. */
-const ZENU = ['Tuchín', 'San Andrés de Sotavento']
 
 const MOTIVOS = {
   e1: ['Fiebre y malestar general desde hace tres días.', 'Tos con flema que no se quita.', 'Dolor de cabeza frecuente.', 'Control de presión arterial.', 'Diarrea y dolor de barriga.', 'Dolor en la espalda baja al trabajar en el campo.', 'Renovar la fórmula de la tensión.', 'Mareos al levantarme.'],
@@ -107,13 +116,13 @@ export function generarDatos(base) {
     })
   })
 
-  /* --- auxiliares: uno por municipio (Pueblo Nuevo ya tiene a Nelson) --- */
-  MUNICIPIOS.slice(1).forEach(([mun, dep], i) => {
+  /* --- auxiliares: uno por puesto de salud (Cintura ya tiene a Nelson) --- */
+  ZONAS.slice(1).forEach(([zona], i) => {
     const mujer = azar() < 0.6
     usuarios.push({
       id: 'ga' + (i + 1), rol: 'auxiliar', doc: nuevoDoc(35), clave: '1234',
       nombre: uno(mujer ? NOMBRES_F : NOMBRES_M) + ' ' + uno(APELLIDOS) + ' ' + uno(APELLIDOS),
-      puesto: 'Puesto de salud ' + mun, municipio: mun + ', ' + dep, tel: celular()
+      puesto: puestoDe(zona), municipio: MUNICIPIO, tel: celular()
     })
   })
 
@@ -123,15 +132,17 @@ export function generarDatos(base) {
     const mujer = azar() < 0.55
     const edad = azar() < 0.25 ? entre(0, 14) : entre(15, 88)
     const nac = sumaDias(HOY, -(edad * 365 + entre(0, 364)))
-    const [mun, dep] = MUNICIPIOS[Math.floor(Math.pow(azar(), 1.6) * MUNICIPIOS.length)] // unos municipios con más gente que otros
+    const [zona, veredas] = ZONAS[Math.floor(Math.pow(azar(), 1.4) * ZONAS.length)] // unas zonas con más gente que otras
+    // Unos viven en el centro del corregimiento y la mayoría en sus veredas y caseríos.
+    const r = azar()
+    const lugar = r < 0.3 ? (zona === 'Pueblo Nuevo' ? 'Cabecera municipal' : 'Corregimiento ' + zona)
+      : (r < 0.75 ? 'Vereda ' : 'Caserío ') + uno(veredas) + ' · ' + zona
     const segundo = uno(mujer ? SEGUNDOS_F : SEGUNDOS_M)
     const p = {
       id: 'gp' + i, rol: 'paciente', doc: nuevoDoc(edad), clave: '1234',
       nombre: [uno(mujer ? NOMBRES_F : NOMBRES_M), segundo, uno(APELLIDOS), uno(APELLIDOS)].filter(Boolean).join(' '),
-      nac: iso(nac), tel: celular(), municipio: mun + ', ' + dep,
-      vereda: (azar() < 0.5 ? 'Vereda ' : 'Corregimiento ') + uno(VEREDAS),
-      eps: ZENU.includes(mun) && azar() < 0.6 ? 'Manexka' : uno(EPS),
-      puesto: 'Puesto de salud ' + mun
+      nac: iso(nac), tel: celular(), municipio: MUNICIPIO, vereda: lugar,
+      eps: uno(EPS), puesto: puestoDe(zona)
     }
     pacientes.push(p)
     usuarios.push(p)

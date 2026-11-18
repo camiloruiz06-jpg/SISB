@@ -21,7 +21,7 @@ export default function Inicio() {
         <span className="tenue">{fechaLarga(iso(HOY))}</span>
         <h1>{saludo()}, {sesion.nombre.split(' ')[0]}</h1>
         <span className="tenue">Tu salud, cerca de casa.</span>
-        {sesion.municipio && <span className="chip-lugar" style={{ marginTop: '.3rem' }}><Icono nombre="mapa" tam={16} /> {sesion.municipio}</span>}
+        {sesion.municipio && <span className="chip-lugar" style={{ marginTop: '.3rem' }}><Icono nombre="mapa" tam={16} /> {sesion.vereda || sesion.municipio}</span>}
       </div>
 
       {proxima ? <TarjetaProxima cita={proxima} /> : (

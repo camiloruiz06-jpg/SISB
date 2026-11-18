@@ -1,6 +1,6 @@
 # SISB — Sistema Integral de Salud y Bienestar
 
-Plataforma web de telesalud que conecta comunidades rurales de Córdoba (piloto en Pueblo Nuevo) con profesionales
+Plataforma web de telesalud que conecta la zona rural de Pueblo Nuevo, Córdoba (corregimientos, veredas y caseríos) con profesionales
 de la salud: agendamiento de citas, teleconsulta por videollamada e historia clínica digital.
 
 Proyecto de la asignatura de Ingeniería de Software — Universidad de la Costa (CUC).

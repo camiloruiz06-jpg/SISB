@@ -69,7 +69,7 @@ export default function Usuarios() {
     })
   }
 
-  const detalle = (x) => x.municipio || x.puesto || x.cargo || (x.espId ? buscarEspecialidad(db, x.espId).nombre : '')
+  const detalle = (x) => x.vereda || x.puesto || x.municipio || x.cargo || (x.espId ? buscarEspecialidad(db, x.espId).nombre : '')
   /* Misma búsqueda que la de pacientes: por cédula (si son números) o por nombre y lugar. */
   const resultados = useMemo(() => buscarPacientes(db, texto, db.usuarios.filter((x) => filtro === 'todos' || x.rol === filtro)),
     [db, texto, filtro])
@@ -93,7 +93,7 @@ export default function Usuarios() {
             <span className="sr">Buscar usuario</span>
             <Icono nombre="buscar" tam={19} />
             <input type="search" value={texto} onChange={(e) => { setTexto(e.target.value); setPagina(1) }}
-                   placeholder="Buscar por cédula, nombre o municipio" />
+                   placeholder="Buscar por cédula, nombre o vereda" />
           </label>
         </div>
         <div className="filtros" role="group" aria-label="Filtrar por rol">

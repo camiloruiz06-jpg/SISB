@@ -45,7 +45,7 @@ export default function SubirDocumentos() {
           {paciente ? (
             <div className="item" style={{ border: '1.5px solid var(--primary)', borderRadius: 10, alignItems: 'center', background: 'var(--primary-soft)' }}>
               <span className="avatar">{iniciales(paciente.nombre)}</span>
-              <div className="cuerpo"><b>{paciente.nombre}</b><span className="meta">C.C. {paciente.doc} · {paciente.municipio}</span></div>
+              <div className="cuerpo"><b>{paciente.nombre}</b><span className="meta">C.C. {paciente.doc} · {paciente.vereda || paciente.municipio}</span></div>
               <button type="button" className="btn pequeno fantasma" onClick={() => setPaciente(null)}>Cambiar</button>
             </div>
           ) : <BuscadorPaciente alElegir={setPaciente} autoFoco={false} />}

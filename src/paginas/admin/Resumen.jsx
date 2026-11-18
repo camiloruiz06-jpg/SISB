@@ -8,8 +8,9 @@ export default function Resumen() {
   const porRol = (r) => db.usuarios.filter((x) => x.rol === r).length
   const porEstado = (e) => db.citas.filter((c) => c.estado === e).length
   const pacientes = db.usuarios.filter((x) => x.rol === 'paciente')
-  const municipios = [...new Set(pacientes.map((x) => x.municipio))]
-    .map((m) => ({ m, n: pacientes.filter((x) => x.municipio === m).length }))
+  /* Pueblo Nuevo es un solo municipio: se agrupa por puesto de salud (uno por corregimiento). */
+  const municipios = [...new Set(pacientes.map((x) => x.puesto))]
+    .map((m) => ({ m, n: pacientes.filter((x) => x.puesto === m).length }))
     .sort((a, b) => b.n - a.n)
   const maximo = Math.max(1, ...municipios.map((x) => x.n))
   const top = municipios.slice(0, 10)
@@ -30,7 +31,7 @@ export default function Resumen() {
       </div>
 
       <div className="kpis">
-        <Kpi icono="usuario" k="Pacientes" v={fmt(porRol('paciente'))} extra={municipios.length + ' municipios'} />
+        <Kpi icono="usuario" k="Pacientes" v={fmt(porRol('paciente'))} extra={municipios.length + ' puestos de salud'} />
         <Kpi icono="pulso" k="Profesionales" v={porRol('medico')} extra={db.especialidades.length + ' especialidades'} />
         <Kpi icono="usuarios" k="Auxiliares" v={porRol('auxiliar')} extra="Apoyo en los puestos" />
         <Kpi icono="calendario" k="Citas programadas" v={fmt(porEstado('programada'))} />
@@ -40,7 +41,7 @@ export default function Resumen() {
 
       <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: '1.6rem' }}>
         <section className="seccion">
-          <div className="entre"><h2>Municipios con más pacientes</h2><span className="contador">{municipios.length} municipios en total</span></div>
+          <div className="entre"><h2>Pacientes por puesto de salud</h2><span className="contador">{municipios.length} puestos en Pueblo Nuevo</span></div>
           <div className="lista">
             {top.map(({ m, n }) => (
               <div className="item" key={m} style={{ alignItems: 'center' }}>

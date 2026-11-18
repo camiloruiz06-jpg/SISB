@@ -39,7 +39,7 @@ export default function BuscadorPaciente({ alElegir, alRegistrar, autoFoco = tru
                 <span className="avatar">{iniciales(p.nombre)}</span>
                 <span className="resultado-txt">
                   <b>{p.nombre}</b>
-                  <span>C.C. <Resaltar texto={p.doc} buscado={q} /> · {p.municipio}</span>
+                  <span>C.C. <Resaltar texto={p.doc} buscado={q} /> · {p.vereda || p.municipio}</span>
                 </span>
                 <Icono nombre="atras" tam={18} />
               </button>

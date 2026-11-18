@@ -18,11 +18,11 @@ export const especialidades = [
 export const usuarios = [
   { id: 'u1', rol: 'paciente', doc: '1045882331', clave: '1234', nombre: 'María Paulina Gutiérrez',
     nac: '1991-03-14', tel: '310 455 2201', municipio: 'Pueblo Nuevo, Córdoba',
-    vereda: 'Corregimiento Cintura', eps: 'Mutual SER', puesto: 'Puesto de salud Pueblo Nuevo' },
+    vereda: 'Corregimiento Cintura', eps: 'Mutual SER', puesto: 'Puesto de salud Cintura' },
 
   { id: 'u2', rol: 'paciente', doc: '8744120', clave: '1234', nombre: 'José Nel Ariza Mendoza',
     nac: '1958-11-02', tel: '312 880 4417', municipio: 'Pueblo Nuevo, Córdoba',
-    vereda: 'Corregimiento Puerto Santo', eps: 'Nueva EPS', puesto: 'Puesto de salud Pueblo Nuevo' },
+    vereda: 'Vereda El Totumo · Cintura', eps: 'Nueva EPS', puesto: 'Puesto de salud Cintura' },
 
   { id: 'u3', rol: 'medico', doc: '52998114', clave: '1234', nombre: 'Luz Mery Pacheco',
     titulo: 'Dra.', espId: 'e1', registro: 'RM 88-2214', tel: '300 220 1190',
@@ -49,7 +49,7 @@ export const usuarios = [
       4: { manana: ['07:30', '11:30'], tarde: ['14:00', '16:30'] } } } },
 
   { id: 'u6', rol: 'auxiliar', doc: '1082331445', clave: '1234', nombre: 'Nelson Barrios Molina',
-    puesto: 'Puesto de salud Pueblo Nuevo', tel: '318 440 7712' },
+    puesto: 'Puesto de salud Cintura', municipio: 'Pueblo Nuevo, Córdoba', tel: '318 440 7712' },
 
   { id: 'u7', rol: 'admin', doc: '1140899210', clave: '1234', nombre: 'Camilo Ruiz Alquichire',
     cargo: 'Administrador del sistema' }
@@ -103,7 +103,7 @@ export const tramites = [
   { id: 't3', pacienteId: 'u1', titulo: 'Cuadro hemático', estado: 'listo',
     detalle: 'Resultado ya cargado en tu historia clínica.', fecha: iso(sumaDias(HOY, -14)) },
   { id: 't4', pacienteId: 'u2', titulo: 'Autorización de nefrología', estado: 'pendiente',
-    detalle: 'Radicar en la Nueva EPS, sede Planeta Rica.', fecha: iso(sumaDias(HOY, -30)) }
+    detalle: 'Radicar en la Nueva EPS, oficina de Pueblo Nuevo.', fecha: iso(sumaDias(HOY, -30)) }
 ]
 
 export const formulas = [
